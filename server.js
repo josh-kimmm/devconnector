@@ -7,11 +7,19 @@ const PostsRoutes = require('./routes/api/posts');
 
 const app = express();
 
-// COnnect Database
+// Connect Database
 connectDB();
 
 // Init Middleware
 app.use(express.json({ extended: false }));
+
+// Resolve CORS issues
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
+    res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS");
+    next();
+});
 
 app.get('/', (req, res) => res.send('API Running'));
 
