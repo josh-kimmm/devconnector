@@ -5,6 +5,7 @@ const router = express.Router();
 const auth = require('../../middleware/auth');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
+const Post = require('../../models/Posts');
 const normalize = require('normalize-url');
 const { check, validationResult } = require('express-validator');
 
@@ -105,6 +106,20 @@ async (req, res) => {
     
 });
 
+// @route    GET api/profile
+// @desc     Get all profiles
+// @access   Public
+router.get('/', async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+        res.json(profiles);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
+
 // @route   GET api/profile/user/:user_id
 // @desc    Get profile by user ID
 // @access  Public
@@ -136,7 +151,9 @@ router.get('/user/:user_id', async (req, res) => {
 // @access  Private
 router.delete('/', auth, async (req, res) => {
     try {
-        // @todo - remove users posts
+        // Remove user posts
+        await Post.deleteMany({ user: req.user.id });
+
         // Remove profile
         await Profile.findOneAndRemove({ user: req.user.id });
         // Remove user
@@ -284,7 +301,7 @@ async (req, res) => {
         // Get remove index
         const removeIndex = profile.education.map(item => item.id).indexOf(req.params.edu_id);
 
-        profile.experience.splice(removeIndex, 1);
+        profile.education.splice(removeIndex, 1);
 
         await profile.save();
 

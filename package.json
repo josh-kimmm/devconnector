@@ -9,7 +9,8 @@
     "server_debug": "nodemon --inspect server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "dev_debug": "concurrently \"npm run server_debug\" \"npm run client\""
+    "dev_debug": "concurrently \"npm run server_debug\" \"npm run client\"",
+    "query": "node --inspect query"
   },
   "author": "Joshua Kim",
   "license": "MIT",

@@ -135,19 +135,15 @@ async (req, res) => {
 });
 
 // @route   PUT api/posts/like/:id
-// @desc    Like a post
+// @desc    Unlike a post
 // @access  Private
-router.put('/unlike/:id', auth , 
+router.put('/unlike/:id', auth, 
 async (req, res) => {
     try {
         const post = await Posts.findById(req.params.id);
 
         if(!post) 
             return res.status(404).json({ msg: 'Post not found' });
-
-        // Check user
-        if(post.user.toString() !== req.user.id)
-            return res.status(401).json({ msg: 'User not authorized '});
 
         // Check if post has already been liked
         if(post.likes.filter(like => like.user.toString() === req.user.id).length === 0)
