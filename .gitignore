@@ -1,3 +1,4 @@
 node_modules/
 devconnector_html_theme
 config/default.json
+ecosystem.config.js
