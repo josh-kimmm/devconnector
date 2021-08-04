@@ -8,8 +8,8 @@
     "server": "nodemon server",
     "server_debug": "nodemon --inspect server",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "dev_debug": "concurrently \"npm run server_debug\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\"",
+    "debug": "concurrently \"npm run server_debug\"",
     "query": "node --inspect query"
   },
   "author": "Joshua Kim",
