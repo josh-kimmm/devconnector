@@ -16,6 +16,8 @@ app.use(express.json({ extended: false }));
 
 // Resolve CORS issues
 app.use(function(req, res, next) {
+    console.log("process.env.NODE_ENV: " + process.env.NODE_ENV);
+    console.log("prodURL: " + config.get('prodURL'));
     res.header("Access-Control-Allow-Origin", process.env.NODE_ENV ? config.get('prodURL') : config.get('devURL'));
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
     res.header("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
