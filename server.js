@@ -1,5 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const config = require('config');
 const UsersRoutes = require('./routes/api/users');
 const AuthRoutes = require('./routes/api/auth')
 const ProfileRoutes = require('./routes/api/profile');
@@ -15,7 +16,7 @@ app.use(express.json({ extended: false }));
 
 // Resolve CORS issues
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Origin", process.env.NODE_ENV ? config.get('prodURL') : config.get('devURL'));
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-auth-token");
     res.header("Access-Control-Allow-Methods", "POST, PUT, GET, DELETE, OPTIONS");
     next();
