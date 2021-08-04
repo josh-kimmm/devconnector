@@ -1,7 +1,0 @@
-{
-    "mongoURI": "mongodb+srv://JoshDev:dev@devconnector2.mdq9q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken",
-    "githubToken": "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",
-    "prodURL": "http://ec2-54-202-87-228.us-west-2.compute.amazonaws.com",
-    "devURL": "http://localhost:3000"
-}
