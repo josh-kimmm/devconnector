@@ -9,11 +9,18 @@ connectDB();
 
 // Enter mongoose query here then check queryresults.json afterwards
 const query = async () => {
-    var barf = await Posts.findById("60a5afecb7a71804be904335")
-    
+    // var test = await Posts.findOneAndUpdate(
+    //     { _id: "60a5b0d0d8312e04d298ec43" },
+    //     { text: "Anonymous user is now posting!!!!! Woohoo!! So Eggxciting!!"},
+    //     { new: true }    
+    // );
+
+    // await test.save();
+
+    var test = await Profile.find().populate('user', ['name', 'avatar']);
 
 
-    return barf;
+    return test;
 };
 
 query().then((res) => {
